@@ -11,7 +11,7 @@ import Schemes from './components/Schemes';
 function App() {
   return (
     <>
-      <Navbar />
+      <Navbar/>
       
       <Route exact path='/'>
         <Home />
@@ -34,6 +34,9 @@ function App() {
       </Route>
 
       <Route path='/signup'>
+        <Signup />
+      </Route>
+      <Route path='/signnnup'>
         <Signup />
       </Route>
     </>
