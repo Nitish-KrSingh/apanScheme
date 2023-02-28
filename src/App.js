@@ -1,44 +1,31 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-import Navbar from './components/Navbar'; 
-import Home from './components/Home';
-import About from './components/About';
-import Contact from './components/Contact';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Schemes from './components/Schemes';
+import React from "react";
+import { Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import Schemes from "./components/Schemes";
+import { Routes } from "react-router-dom/dist";
 
 function App() {
   return (
     <>
-      <Navbar/>
-      
-      <Route exact path='/'>
-        <Home />
-      </Route>
+      <Navbar />
+      <Routes>
+        <Route element={<Home />} exact path="/" />
 
-      <Route path='/schemes'>
-        <Schemes />
-      </Route>
+        <Route element={<Schemes />} path="/schemes" />
 
-      <Route path='/about'>
-        <About />
-      </Route>
+        <Route element={<About />} path="/about" />
 
-      <Route path='/contact'>
-        <Contact />
-      </Route>
+        <Route element={<Contact />} path="/contact" />
 
-      <Route path='/login'>
-        <Login />
-      </Route>
+        <Route element={<Login />} path="/login" />
 
-      <Route path='/signup'>
-        <Signup />
-      </Route>
-      <Route path='/signnnup'>
-        <Signup />
-      </Route>
+        <Route element={<Signup />} path="/signup" />
+      </Routes>
     </>
   );
 }
