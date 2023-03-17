@@ -1,0 +1,12 @@
+.card {
+  margin-left: 25rem;
+    width: 800px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  h2{
+    text-align: center;
+    margin-top: 4rem;
+    color: #006400;
+  }

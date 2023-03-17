@@ -1,30 +1,29 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import About from "./components/About";
-import Contact from "./components/Contact";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import Schemes from "./components/Schemes";
-import { Routes } from "react-router-dom/dist";
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Navbar from './components/layout/Navbar'; 
+import Home from './components/Home';
+import About from './components/About';
+import Ministries from './components/Ministries';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Schemes from './components/Schemes';
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-        <Route element={<Home />} exact path="/" />
+        <Route element={<Home />} exact path='/' />
 
-        <Route element={<Schemes />} path="/schemes" />
+        <Route element={<Schemes />} exact path='/schemes' />
 
-        <Route element={<About />} path="/about" />
+        <Route element={<Ministries />} exact path='/ministries' />
 
-        <Route element={<Contact />} path="/contact" />
+        <Route element={<About />} exact path='/about' />
 
-        <Route element={<Login />} path="/login" />
+        <Route element={<Login />} exact path='/login' />
 
-        <Route element={<Signup />} path="/signup" />
+        <Route element={<Signup />} exact path='/signup' />
       </Routes>
     </>
   );

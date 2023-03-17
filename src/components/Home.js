@@ -1,11 +1,21 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import './Home.css';
 
 const Home = () => {
     return (
-        <div>
-            <h2 className='pt-5'>#GOVERNMENTSCHEMESFORYOU</h2>
-            <h4>Discover all Government schemes on one stop portal.</h4>
-        </div>
+      <div className="container d-flex align-items-center h-100">
+    <div className="row">
+      <header className="text-center col-12">
+        <h1 className="text-uppercase"><strong>#GOVERNMENTSCHEMESFORYOU</strong></h1>
+      </header>
+      <div className="buffer col-12"></div>
+      <section className="text-center col-12">
+        <hr />
+        <button className="btn btn-primary" type="button" name="Find">Discover all schemes at one portal.</button>
+      </section>
+    </div>
+  </div>
     )
 }
 
