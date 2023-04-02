@@ -1,12 +1,15 @@
 .container
 {
-    background: url(https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGUlMjAlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60);
+  width: 100%;
+  background-image: url('https://images.unsplash.com/photo-1533912352517-92dd08116ea4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHdoaXRlJTIwYmFja2dyb3VuZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60') no-repeat;
 }
 h1 {
-    color: white;
+  margin-top: 40px;
+    color: #006400;
     font-size: 3rem;
   }
   hr{
+    margin-left: 600px;
     border-color: #006400;
     border-width: 3px;
     max-width: 65px;

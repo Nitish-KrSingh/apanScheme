@@ -22,7 +22,6 @@ const Signup = () => {
           <label htmlFor='password'>Password</label>
           <input id='password' required rows='5' />
         </div>
-        
         <div className={classes.control}>
           <label htmlFor='cpassword'>Confirm Password</label>
           <input id='cpassword' required rows='5' />
