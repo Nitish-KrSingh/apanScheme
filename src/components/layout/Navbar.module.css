@@ -4,16 +4,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #006400;
-    padding: 0 10%;
+    background-color: #0064004b;
+    padding: 0 5%;
+    color: #000000;
   }
   
   .logo {
     font-size: 2rem;
-    color: white;
     font-weight: bold;
+    font-family: 'ProductSans-Bold';
+    
   }
-  
+  .logoSpan{
+    background-color: #006400;
+    color: #ffffff;
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+  }
   .header ul {
     list-style: none;
     margin: 0;
@@ -23,17 +30,22 @@
   }
   
   .header li {
-    margin-left: 3rem;
+    margin-left: 1rem;
   }
   
   .header a {
     text-decoration: none;
-    font-size: 1.5rem;
-    color: #ccd5ae;
+    font-size: 1.3rem;
+    color: #000000;
+    padding: 0.5rem 1.5rem;
+    border-radius: 100px;
   }
   
   .header a:hover,
   .header a:active,
   .header a.active {
     color: white;
+    background-color: #006400b1;
+    padding: 0.5rem 1.5rem;
+    border-radius: 100px;
   }

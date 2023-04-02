@@ -1,0 +1,58 @@
+
+.homeBackground
+{
+   height: 90vh;
+   
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+.homeSection{
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.title {
+    color: #000000;
+    font-size: 3rem;
+    
+    font-family: 'ProductSans-Bold';
+  }
+ 
+.getSchemeBtn{
+    background-color: #006400;
+    color: #ffffff;
+    font-size: 2rem;
+    border-radius: 200px;
+    font-weight: bold;
+   width: 25rem;
+    border: none;
+    font-family: 'ProductSans-Bold';
+    padding: 0.5rem 3rem;
+}
+
+.getSchemeBtn:hover{
+    background-color: #55c555;
+    color: #000000;
+    font-size: 2rem;
+    border-radius: 200px;
+    font-weight: bold;
+    border: none;
+    font-family: 'ProductSans-Bold';
+    padding: 0.5rem 3rem;
+    box-shadow: 2px 2px 2px 2px #006c0e;
+}
+  
+.subTitle{
+    color: #525252;
+    font-size: 1.2rem;
+    font-family: 'ProductSans-Regular';
+}
+
+.filterOptions{
+    display: flex;
+    flex-direction: row;
+   justify-content: center;
+}

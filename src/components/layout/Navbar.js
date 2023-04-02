@@ -5,26 +5,26 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
     return(
       <header className={classes.header}>
-      <div className={classes.logo}>apnaScheme</div>
+      <div className={classes.logo}>Apna<span className={classes.logoSpan}>Scheme</span></div>
       <nav>
         <ul>
           <li>
-            <NavLink className={classes.active} to='/'>Home</NavLink>
+            <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''}  to='/'>Home</NavLink>
           </li>
           <li>
-            <NavLink to='/schemes'>Schemes</NavLink>
+            <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''} to='/schemes'>Schemes</NavLink>
           </li>
           <li>
-            <NavLink to='/ministries'>Ministries</NavLink>
+            <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''}   to='/ministries'>Ministries</NavLink>
           </li>
           <li>
-            <NavLink to='/about'>About Us</NavLink>
+            <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''}  to='/about'>About Us</NavLink>
           </li>
           <li>
-            <NavLink to='/signup'>Sign - Up</NavLink>
+            <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''}  to='/signup'>Signup</NavLink>
           </li>
           <li>
-            <NavLink to='/login'>Log - In</NavLink>
+            <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''}  to='/login'>Login</NavLink>
           </li>
         </ul>
       </nav>
