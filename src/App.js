@@ -7,6 +7,7 @@ import Ministries from './components/Ministries';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Schemes from './components/Schemes/Schemes';
+import FilterForm from './components/FilterForm';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         <Route element={<Login />} exact path='/login' />
 
         <Route element={<Signup />} exact path='/signup' />
+
+        <Route element={<FilterForm /> } exact path = '/filterform' />
+
       </Routes>
     </>
   );

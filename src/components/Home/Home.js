@@ -5,9 +5,10 @@ import {ReactComponent as RightNavigation} from "../../assets/images/right.svg"
 import Categories from "./Categories/Categories"
 import States from './States/States';
 import Ministries from "../Ministries"
+import { useNavigate } from "react-router-dom"
 const Home = () => {
     const [schemeFilter ,setSchemeFilter] = useState('categories');
-    
+    const navigate = useNavigate();
     const categoriesOnClickHandler = () =>{
       setSchemeFilter('categories');
     }
@@ -17,6 +18,11 @@ const Home = () => {
     const ministriesOnClickHandler = () =>{
       setSchemeFilter('ministries');
     }
+
+    const filterform = () =>{
+      navigate('/filterform')
+    }
+
     return (<>
       <div className={`${classes.homeBackground}`}
       style={{backgroundImage : `url(${bg})`,}}
@@ -27,7 +33,7 @@ const Home = () => {
       <div className={`${classes.homeSection}`}>
       <h3 className={classes.title}>Scheme Offered <br/>Government</h3>
         <p className={classes.subTitle}>Explore Government Schemes here<br/>and check your eligibility</p>
-        <button className={classes.getSchemeBtn}>Get Your Scheme <RightNavigation/> </button>
+        <button onClick={filterform} className={classes.getSchemeBtn}>Get Your Scheme <RightNavigation/> </button>
       </div>
       </div>
       <div className="col-lg-6">
