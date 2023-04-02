@@ -1,0 +1,22 @@
+.schemes{
+    padding: 10px;
+    background-color: rgb(245, 245, 245);
+}
+
+
+.filterContainer{
+    
+    
+}
+
+.filterHeader{
+    display: flex;
+    justify-content: space-between;
+   
+    
+}
+
+.filterTitle{
+   margin-top: 10px;
+    color: #006400;
+}

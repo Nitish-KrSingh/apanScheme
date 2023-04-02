@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/layout/Navbar'; 
-import Home from './components/Home';
+import Home from './components/Home/Home';
 import About from './components/About';
 import Ministries from './components/Ministries';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import Schemes from './components/Schemes';
+import Schemes from './components/Schemes/Schemes';
 
 function App() {
   return (

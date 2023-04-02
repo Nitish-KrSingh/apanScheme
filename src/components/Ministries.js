@@ -36,7 +36,9 @@ const DUMMY_Ministry = [
 
 const Ministries = () => {
     return (
+        
         <MinistryList meetups={DUMMY_Ministry} />
+        
     )
 }
 

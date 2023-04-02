@@ -1,0 +1,13 @@
+
+
+.filterItem{
+    color: #6b6b6b;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.filterCount{
+    color: #6b6b6b;
+    font-size: 1rem;
+}
