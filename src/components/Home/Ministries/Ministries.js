@@ -1,10 +1,25 @@
-import {Fragment} from "react" 
-import classes from "./Ministries.module.css" 
+import { Fragment } from "react";
+import classes from "./Ministries.module.css";
+import { CENTRAL_MINISTRIES } from "../../../utils/data";
+import SchemeCard from "../SchemeCard/SchemeCard";
 
-const Ministries = () => { 
+const Ministries = () => {
+  return (
+    <div className="container">
+      <h2 className="my-5 text-center">Explore schemes of Central Ministries</h2>
+      <div className="row m-3">
+        {CENTRAL_MINISTRIES.map((ministries) => (
+          <div className="col col-lg-3" key={ministries.Ministries}>
+            <SchemeCard
+              name={ministries.Ministries}
+              height="210px"
+              schemeCount={ministries.schemeCount}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
-return (<Fragment>Ministries </Fragment>); 
-
-} 
-
-export default Ministries; 
+export default Ministries;
