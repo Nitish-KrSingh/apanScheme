@@ -7,6 +7,7 @@ import States from './States/States';
 import Ministries from "./Ministries/Ministries"
 import { useNavigate } from "react-router-dom"
 import Footer from "../Footer/Footer"
+import Page from "./Page/Page";
 
 
 const Home = () => {
@@ -56,6 +57,7 @@ const Home = () => {
         {schemeFilter === 'states' && <States/>}
         {schemeFilter === 'ministries' && <Ministries/>}
       </div>
+      <Page />
       <Footer/>
   </div>
   
