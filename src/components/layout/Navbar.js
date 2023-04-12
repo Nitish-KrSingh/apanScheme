@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext  } from 'react';
 import classes from './Navbar.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {AuthContext}  from '../../context/auth-context';
 import {ReactComponent as ProfileIcon } from '../../assets/icon/profile.svg';
 import { getLogout } from '../../api/auth-api';
 const Navbar = () => {
   const authContext = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const logoutHandler = () => {
     authContext.setLoading(true);
     getLogout({
@@ -24,6 +24,8 @@ const Navbar = () => {
         authContext.setLoading(false);
         console.log(err);
       });
+
+
   };
 
     return(
@@ -51,7 +53,7 @@ const Navbar = () => {
           </li>}
 
           {authContext.token !=null && <li>
-            <button className={`btn`}   to='/profile'><ProfileIcon width={40}/></button>
+            <button className={`btn`}  onClick={()=> navigate("/profile")}><ProfileIcon width={40}/></button>
           </li>}
 
           {authContext.token !=null && <li>

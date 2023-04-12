@@ -1,120 +1,84 @@
 import React from 'react'
 import  './Footer.css';
+import locker from "../../assets/images/digi_locker.jpg" ;
+import dgindia from "../../assets/images/digitalIndiaF.jpg" ;
+import email from "../../assets/images/email.png" ;
+import gov from "../../assets/images/my_gov.jpg" ;
+import call from "../../assets/images/phone-call.png" ;
+import phone from "../../assets/images/phone.png" ;
+import umang from "../../assets/images/umang.png" ;
+import goi from "../../assets/images/goi.jpg" ;
 
 const Footer = () => {
   return (
    <>
-   <footer className="footer-section.bg-dark">
-        <div className="container">
-            <div className="footer-cta pt-5 pb-5">
-                <div className="row">
-                    <div className="col-xl-4 col-md-4 mb-30">
-                        <div className="single-cta">
-                            <i className="fas fa-map-marker-alt"></i>
-                            <div className="cta-text">
-                                <h4>Find us</h4>
-                                <span>1010 Avenue, sw 54321,</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-4 col-md-4 mb-30">
-                        <div className="single-cta">
-                            <i className="fas fa-phone"></i>
-                            <div className="cta-text">
-                                <h4>Call us</h4>
-                                <span>000000000000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-4 col-md-4 mb-30">
-                        <div className="single-cta">
-                            <i className="far fa-envelope-open"></i>
-                            <div className="cta-text">
-                                <h4>Mail us</h4>
-                                <span>mail@info.com</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="footer-content pt-5 pb-5">
-                <div className="row">
-                    <div className="col-xl-4 col-lg-4 mb-50">
-                        <div className="footer-widget">
-                            <div className="footer-logo">
-                                <a href="#"><img src="#" className="#" alt="logo"/></a>
-                            </div>
-                            <div className="footer-text">
-                                
-                                <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
-                                elit,Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div className="footer-social-icon">
-                                <span>Follow us</span>
-                                <a href="#"><i className="fab fa-facebook-f facebook-bg"></i></a>
-                                <a href="#"><i className="fab fa-twitter twitter-bg"></i></a>
-                                <a href="#"><i className="fab fa-google-plus-g google-bg"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6 mb-30">
-                        <div className="footer-widget">
-                            <div className="footer-widget-heading">
-                                <h3>Useful Links</h3>
-                            </div>
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">about</a></li>
-                                <li><a href="#">services</a></li>
-                               
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">About us</a></li>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6 mb-50">
-                        <div className="footer-widget">
-                            <div className="footer-widget-heading">
-                                <h3>Subscribe</h3>
-                            </div>
-                            <div className="footer-text mb-25">
-                                <p>Dont miss to subscribe to our new feeds, kindly fill the form below.</p>
-                            </div>
-                            <div className="subscribe-form">
-                                <form action="#">
-                                    <input type="text" placeholder="Email Address"/>
-                                    <button><i className="fab fa-telegram-plane"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div className="copyright-area">
-            <div className="container">
-                <div className="row">
-                    <div className="col-xl-6 col-lg-6 text-center text-lg-left">
-                        <div className="copyright-text">
-                            <p>Copyright &copy; 2018, All Right Reserved <a href="#">Nitish</a></p>
-                        </div>
-                    </div>
-                    <div className="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                        <div className="footer-menu">
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Terms</a></li>
-                                <li><a href="#">Privacy</a></li>
-                                <li><a href="#">Policy</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+        <footer>
+
+<div className="content">
+ 
+  <div className="left box">
+    <div className="upper">
+      <div className="topic">About us</div>
+      <p> ApnaScheme - a web application designed to assist citizens in finding the most suitable government schemes that meet their needs.</p>
+    </div>
+    <div className="lower">
+      <div className="topic">Contact us</div>
+      <div className="phone">
+       <img src={phone}/><a className="contact-text" href="#">080-22562727</a>
+      </div>
+      <div className="email">
+       <img src={email}/><a className="contact-text" href="#">support@apnascheme.com</a>
+      </div>
+    </div>
+  </div>
+
+  <div className="middle box">
+    <div className="topic">Quick links</div>
+    <div><a href="#">Home</a></div>
+    <div><a href="#">Contact us</a></div>
+    <div><a href="#">Services</a></div>
+    <div><a href="#">FAQs</a></div>
+    <div><a href="#">Team</a></div>
+   
+  </div>
+  <div className="right box">
+    <div className="topic">Subscribe us</div>
+    <form>
+      <input type="text" placeholder="Enter email address"/>
+      <input type="submit" name="" value="Send"/>
+      <br/>
+      <br/>
+      <div className="media-icons">
+         <div className="topic">Usefull links</div>
+         <a target="_blank" href="https://digitalindia.gov.in" title="Digital India">
+           
+           <img src={dgindia}/>
+         </a>
+
+        <a target="_blank" href="https://www.digilocker.gov.in/" >
+         <img src={locker}/>
+        </a>
+        <a target="_blank" href="https://web.umang.gov.in/landing/">
+          <img src={umang}/>
+        </a>
+
+         <a target="_blank" href="https://www.india.gov.in/" title="National Portal of India">
+           <img src={goi}/>
+         </a>
+       <a title="myGovt" target="_blank" href="https://www.mygov.in/">
+         <img src={gov}/>
+       </a>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div className="bottom">
+  <p>Copyright © 2023 <a href="#">apnaScheme</a> All rights reserved</p>
+</div>
+
+</footer>
    </>
   )
 }

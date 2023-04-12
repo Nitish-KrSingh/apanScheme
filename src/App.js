@@ -37,7 +37,7 @@ function App() {
         <Route element={<UserProfile/> } exact path = '/profile' />
         <Route element={<FilterForm /> } exact path = '/filterform' />
 
-        <Route element={<Footer/> } exact path = '/FooterC' />
+        <Route element={<Footer/> } exact path = '/Footer' />
 
 
       </Routes>
