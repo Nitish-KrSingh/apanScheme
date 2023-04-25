@@ -12,6 +12,7 @@ const States = () => {
           <div className="col col-lg-3" key={state["States/UTs"]}>
             <SchemeCard
               name={state["States/UTs"]}
+              image = {state.image}
               schemeCount={state.schemeCount}
             />
           </div>
