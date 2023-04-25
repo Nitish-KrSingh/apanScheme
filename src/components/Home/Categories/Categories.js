@@ -12,6 +12,7 @@ const Categories = () => {
             <SchemeCard
               height="200px"
               name={category.schemeName}
+              image = {category.image}
               schemeCount={category.schemeCount}
             />
           </div>
