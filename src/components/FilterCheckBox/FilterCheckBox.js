@@ -1,17 +1,18 @@
 
 import classes from "./FilterCheckBox.module.css" 
 
-const FilterCheckBox = ({title , count}) => { 
+const FilterCheckBox = ({title , count,onChange}) => { 
 
-return (<div class={`form-check ${classes.filterItem}`}>
+return (<div className={`form-check ${classes.filterItem}`}>
 <div>
   <input
-    class="form-check-input"
+    onChange={onChange}
+    className="form-check-input"
     type="checkbox"
     value=""
     id="defaultCheck1"
   />
-  <label class="form-check-label" for="defaultCheck1">
+  <label className="form-check-label" for="defaultCheck1">
     {title}
   </label>
 </div>

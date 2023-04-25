@@ -4,9 +4,11 @@ import { AuthContext } from '../context/auth-context';
 import { useContext, useEffect } from 'react';
 import { postSignup } from '../api/auth-api';
 import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import { UiContext } from '../context/ui-context';
 
 const Signup = () => {
     const authContext = useContext(AuthContext);
+    const uiContext = useContext(UiContext);
     const navigate = useNavigate();
     useEffect(() => {
       authContext.fetchFromLocalStorage();
@@ -19,19 +21,19 @@ const Signup = () => {
         phoneNumber,
       })
         .then((response) => {
-          authContext.setLoading(false);
+          uiContext.setLoading(false);
          authContext.setToken(response.data.token);
          window.localStorage.setItem('token',response.data.token); 
          navigate("/", {replace : true});
         })
         .catch((err) => {
-          authContext.setLoading(false);
+          uiContext.setLoading(false);
           console.log(err);
         });
     };
     
     const signupSubmitHandler = (event) => {
-      authContext.setLoading(true);
+      uiContext.setLoading(true);
       event.preventDefault();
       const {name,phone,email,password,cpassword} = event.target.elements;
       const formData = {

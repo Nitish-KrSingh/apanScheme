@@ -5,10 +5,11 @@ import { useContext } from 'react';
 import { AuthContext } from '../context/auth-context';
 import { postLogin } from '../api/auth-api';
 import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import { UiContext } from '../context/ui-context';
 
 const Login = () => {
 
-
+  const uiContext = useContext(UiContext);
   const authContext = useContext(AuthContext);
   const  navigate = useNavigate();
   useEffect(() => {
@@ -28,19 +29,19 @@ const Login = () => {
       password,
     })
       .then((response) => {
-        authContext.setLoading(false);
+        uiContext.setLoading(false);
         authContext.setToken(response.data.token);
          window.localStorage.setItem('token',response.data.token); 
          navigate("/", {replace : true});
       })
       .catch((err) => {
-        authContext.setLoading(false);
+        uiContext.setLoading(false);
         console.log(err);
       });
   };
 
   const loginFormSubmitHandler = (event)=>{
-    authContext.setLoading(true);
+    uiContext.setLoading(true);
     event.preventDefault();
     const {email,password} = event.target.elements;
     const formData = {
