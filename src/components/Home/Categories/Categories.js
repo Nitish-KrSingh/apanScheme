@@ -15,6 +15,7 @@ const Categories = () => {
             onClick={()=>navigate('/schemes/search/category/'+category.schemeName)}
               height="200px"
               name={category.schemeName}
+              image = {category.image}
               schemeCount={category.schemeCount}
               
             />

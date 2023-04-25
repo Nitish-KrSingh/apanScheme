@@ -18,6 +18,7 @@ const States = () => {
             <SchemeCard
               onClick={()=>stateOnClickHandler(state)}
               name={state["States/UTs"]}
+              image = {state.image}
               schemeCount={state.schemeCount}
               
             />

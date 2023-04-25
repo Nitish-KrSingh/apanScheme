@@ -8,7 +8,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Schemes from './components/Schemes/Schemes';
 import FilterForm from './components/FilterForm';
-
+import HowItWorks from './components/Home/HowItWorks';
 import Footer from './components/Footer/Footer';
 import UserProfile from './components/UserProfile/UserProfile';
 import HorizontalLoader from './components/ui/HorizontalLoader/HorizontalLoader';
@@ -36,6 +36,11 @@ function App() {
         <Route element={<UserProfile/> } exact path = '/profile' />
         <Route element={<FilterForm /> } exact path = '/filterform' />
         <Route element={<Footer/> } exact path = '/Footer' />
+
+        <Route element={<HowItWorks/> } exact path = '/HowItWorks' />
+
+
+
       </Routes>
     </>
   );

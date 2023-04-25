@@ -16,6 +16,7 @@ const Ministries = () => {
              onClick={()=>navigate('/schemes/search/ministry/'+ministries.Ministries)}
               name={ministries.Ministries}
               height="210px"
+              image = {ministries.image}
               schemeCount={ministries.schemeCount}
             />
           </div>
