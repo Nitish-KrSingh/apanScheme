@@ -77,7 +77,7 @@ const STATES = [
     "States/UTs": "Arunachal Pradesh",
     image: "\\src\\components\\image",
   },
-  { schemeCount: 34, "States/UTs": "Assam", image: "\\src\\components\\image" },
+
   { schemeCount: 34, "States/UTs": "Bihar", image: "\\src\\components\\image" },
   {
     schemeCount: 34,
