@@ -4,7 +4,7 @@ import "../Home/HowItWorks.module.css"
 const HowItWorks = () => {
     return(
     <>
-        </>
+     </>
     )
 }
 
