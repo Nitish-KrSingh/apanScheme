@@ -1,12 +1,12 @@
 import {Fragment} from "react" 
 import classes from "./FilterDropdown.module.css" 
 
-const FilterDropdown = ({options}) => { 
-
+const FilterDropdown = (props) => { 
+  
 return (<Fragment>
-    <select class="form-select" aria-label="Default select example" className={classes.select}>
+    <select onChange={props.onChange} className={`form-select ${classes.select}`} aria-label="Default select example" >
   <option selected>Select</option>
-    {options.map((option) => <option className={classes.option} key={option} value={option}>{option}</option>)}
+     {props.options.map((option) => <option className={classes.option} key={option.label} value={option.label}>{option.label}</option>)} 
     </select>
      </Fragment>); 
 

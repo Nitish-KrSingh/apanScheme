@@ -13,32 +13,32 @@ import Footer from './components/Footer/Footer';
 import UserProfile from './components/UserProfile/UserProfile';
 import HorizontalLoader from './components/ui/HorizontalLoader/HorizontalLoader';
 import { AuthContext } from './context/auth-context';
+import { UiContext } from './context/ui-context';
 function App() {
-    const authContext = useContext(AuthContext);
+    const uiContext = useContext(UiContext);
   return (
     <>
      
-     {authContext.isLoading && <HorizontalLoader/>  } 
+     {uiContext.isLoading && <HorizontalLoader/>  } 
       <Navbar />
       <Routes>
         
         <Route element={<Home />} exact path='/' />
 
-        <Route element={<Schemes />} exact path='/schemes' />
+        <Route element={<Schemes />}  path='/schemes/search/*' />
 
         <Route element={<Ministries />} exact path='/ministries' />
 
         <Route element={<About />} exact path='/about' />
 
         <Route element={<Login />} exact path='/login' />
-
          <Route element={<Signup />} exact path='/signup' /> 
-
         <Route element={<UserProfile/> } exact path = '/profile' />
         <Route element={<FilterForm /> } exact path = '/filterform' />
-
         <Route element={<Footer/> } exact path = '/Footer' />
+
         <Route element={<HowItWorks/> } exact path = '/HowItWorks' />
+
 
 
       </Routes>

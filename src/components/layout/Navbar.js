@@ -37,7 +37,7 @@ const Navbar = () => {
             <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''}  to='/'>Home</NavLink>
           </li>
           <li>
-            <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''} to='/schemes'>Schemes</NavLink>
+            <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''} to='/schemes/search'>Schemes</NavLink>
           </li>
           <li>
             <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''}   to='/ministries'>Ministries</NavLink>
