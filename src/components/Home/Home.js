@@ -18,7 +18,7 @@ const Home = () => {
     const stateOnClickHandler=()=>{
       setSchemeFilter('states')
     }
-    const ministriesOnClickHandler = () =>{
+    const ministriesOnClickHandler = () =>{ 
       setSchemeFilter('ministries');
     }
 
