@@ -4,7 +4,7 @@ import classes from './FilterForm.module.css';
 const FilterForm = () => 
 {
     return (
-        <Card>
+      <Card>
         <h2>Help us find the best schemes for you</h2>
       <form className={classes.form}>
         <div className={classes.control}>
