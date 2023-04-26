@@ -6,6 +6,7 @@ import { AuthContext } from '../context/auth-context';
 import { postLogin } from '../api/auth-api';
 import { Navigate, redirect, useNavigate } from 'react-router-dom';
 import { UiContext } from '../context/ui-context';
+import SignIn from '../assets/images/SigninImg.jpg'
 
 const Login = () => {
 
@@ -56,6 +57,10 @@ const Login = () => {
   }
     return (
         <div>
+           <section className="h-auto">
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-sm-6 text-black">
           <Card>
           <h2>Log - In</h2>
             <form onSubmit={loginFormSubmitHandler} className={classes.form}>
@@ -72,6 +77,14 @@ const Login = () => {
         </div>
         </form>
         </Card>
+          </div>
+            <div className="col-sm-6 px-0 d-none d-sm-block">
+            <img src={SignIn} alt="Login image" className="w-100 vh-100" />
+          </div>
+        </div>
+      </div>
+    </section>
+
         </div>
     )
 }
