@@ -55,7 +55,8 @@ const Home = () => {
         {schemeFilter === 'states' && <States/>}
         {schemeFilter === 'ministries' && <Ministries/>}
       </div>
-
+      
+      <HowItWorks/>
       <Footer/>
   </div>
   
