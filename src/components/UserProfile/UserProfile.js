@@ -1,12 +1,29 @@
 import {Fragment, useContext, useEffect} from "react" 
 import classNamees from "./UserProfile.module.css" 
 import { AuthContext } from "../../context/auth-context";
+import { getUser } from "../../api/auth-api";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => { 
+
     const authContext = useContext(AuthContext);
+    const navigate = useNavigate();
     useEffect(() => {
         authContext.fetchFromLocalStorage();
-      },[authContext]);
+        if(authContext.token==null){
+            navigate("/login", {replace : true});
+        }
+        getUser({
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authContext.token}`,
+        }).then((data) => {
+            console.log(data);
+            authContext.setUser(data.data.user);
+        }
+        ).catch((err) => {
+            console.log(err);
+        });
+      },[]);
 return (<Fragment>
     <body>
       
@@ -36,20 +53,20 @@ return (<Fragment>
                     <form>
                   
                         <div className="mb-3">
-                            <label className="small mb-1" for="inputUsername">Username </label>
-                            <input className="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username"/>
+                            <label className="small mb-1" htmlFor="inputUsername">Username </label>
+                            <input className="form-control" id="inputUsername" type="text" placeholder="Enter your username" value={authContext.user.username}/>
                         </div>
                       
                         <div className="row gx-3 mb-3">
                            
                             <div className="col-md-6">
-                                <label className="small mb-1" for="inputFirstName">First name</label>
-                                <input className="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie"/>
+                                <label className="small mb-1" htmlFor="inputFirstName">First name</label>
+                                <input className="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value={authContext.user.firstName}/>
                             </div>
                           
                             <div className="col-md-6">
-                                <label className="small mb-1" for="inputLastName">Last name</label>
-                                <input className="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna"/>
+                                <label className="small mb-1" htmlFor="inputLastName">Last name</label>
+                                <input className="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
                             </div>
                         </div>
                      
@@ -57,25 +74,25 @@ return (<Fragment>
                         
                             
                             <div className="col-md-6">
-                                <label className="small mb-1" for="inputLocation">Location</label>
-                                <input className="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA"/>
+                                <label className="small mb-1" htmlFor="inputLocation">Location</label>
+                                <input className="form-control" id="inputLocation" type="text" placeholder="Enter your location" />
                             </div>
                         </div>
                       
                         <div className="mb-3">
-                            <label className="small mb-1" for="inputEmailAddress">Email address</label>
-                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com"/>
+                            <label className="small mb-1" htmlFor="inputEmailAddress">Email address</label>
+                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value={authContext.user.email}/>
                         </div>
                       
                         <div className="row gx-3 mb-3">
                         
                             <div className="col-md-6">
-                                <label className="small mb-1" for="inputPhone">Phone number</label>
-                                <input className="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567"/>
+                                <label className="small mb-1" htmlFor="inputPhone">Phone number</label>
+                                <input className="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value={authContext.user.phone}/>
                             </div>
                          
                             <div className="col-md-6">
-                                <label className="small mb-1" for="inputBirthday">Birthday</label>
+                                <label className="small mb-1" htmlFor="inputBirthday">Birthday</label>
                                 <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988"/>
                             </div>
                         </div>

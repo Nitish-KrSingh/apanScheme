@@ -4,25 +4,28 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import {AuthContext}  from '../../context/auth-context';
 import {ReactComponent as ProfileIcon } from '../../assets/icon/profile.svg';
 import { getLogout } from '../../api/auth-api';
+import { UiContext } from '../../context/ui-context';
 const Navbar = () => {
   const authContext = useContext(AuthContext);
+  const uiContext = useContext(UiContext);
   const navigate = useNavigate();
   const logoutHandler = () => {
-    authContext.setLoading(true);
+    uiContext.setLoading(true);
     getLogout({
       "Content-Type": "application/json",
       Authorization: `Bearer ${authContext.token}`,
     })
       .then((response) => {
-        authContext.setLoading(false);
+        uiContext.setLoading(false);
         
       authContext.setToken(null);
         window.localStorage.removeItem("token");
         window.localStorage.setItem("logout", Date.now());
       })
       .catch((err) => {
-        authContext.setLoading(false);
+        uiContext.setLoading(false);
         console.log(err);
+        alert("Something went wrong");
       });
 
 
@@ -32,12 +35,12 @@ const Navbar = () => {
       <header className={classes.header}>
       <div className={classes.logo}>Apna<span className={classes.logoSpan}>Scheme</span></div>
       <nav>
-        <ul>
+        <ul >
           <li>
             <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''}  to='/'>Home</NavLink>
           </li>
           <li>
-            <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''} to='/schemes/search'>Schemes</NavLink>
+            <a  href='#scheme'>Schemes</a>
           </li>
           <li>
             <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''}   to='/ministries'>Ministries</NavLink>
@@ -53,7 +56,7 @@ const Navbar = () => {
           </li>}
 
           {authContext.token !=null && <li>
-            <button className={`btn`}  onClick={()=> navigate("/profile")}><ProfileIcon width={40}/></button>
+            <span role='button' onClick={()=> navigate("/profile")}><ProfileIcon width={40}/></span>
           </li>}
 
           {authContext.token !=null && <li>
