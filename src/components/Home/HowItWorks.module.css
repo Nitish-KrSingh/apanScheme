@@ -1,16 +1,19 @@
-.box-shadow
-{
- box-shadow:0px 2px 10px rgba(0,0,0,0.5);
-}
-.cardbody1:hover
-{
-   transform: scale(1.10);
-} 
-.cardbody2:hover
-{
-   transform: scale(1.10);
-} 
-.cardbody3:hover
-{
-   transform: scale(1.10);
-}
+h1 {
+   text-align: center;
+ }
+h3{color: rgb(22, 210, 22);}
+ .box-shadow
+ {
+  box-shadow:0px 2px 10px rgba(0,0,0,0.5);
+ }
+ .cardbody:hover
+ {
+    transform: scale(1.10);
+ } 
+
+ .cardbody{
+   height: 300px;
+    width: 200px;
+     margin:50px;
+      padding: 40px
+ }
