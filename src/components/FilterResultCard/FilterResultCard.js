@@ -8,7 +8,7 @@ return (<div className="card card-body shadow-sm rounded">
         <h3>{fields.schemeName}</h3>
         <p>{fields.briefDescription}</p>
              <div className="d-inline-flex" style={{gap : '5px'}}>
-             {fields.tags.map(t=>   <span className={classes.badge} >{t}</span>)}
+             {fields.tags.map((t,i)=>   <span className={classes.badge} key={i}>{t}</span>)}
              </div>
              
      </div>); 

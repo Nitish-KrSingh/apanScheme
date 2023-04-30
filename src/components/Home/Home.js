@@ -44,7 +44,7 @@ const Home = () => {
       </div>
     </div>
   </div>
-  <div className={classes.categories}>
+  <div className={classes.categories} id="scheme">
       <div className={classes.filterOptions}>
         <button className={`btn  ${schemeFilter === 'categories' ? 'btn-success' : 'btn-light'}`} onClick={categoriesOnClickHandler}>Categories</button>
         <button className={`btn  ${schemeFilter === 'states' ? 'btn-success' : 'btn-light'}`} onClick={stateOnClickHandler}>States/UTs</button>

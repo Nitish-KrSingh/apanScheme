@@ -3,7 +3,7 @@ import { getLogout, postLogin, postSignup } from "../api/auth-api";
 
 export const AuthContext = createContext({
   token: null,
-  user: null,
+  user: {},
   isLoading : false,
   setLoading : (isLoading) => {},
   setUser : (user) => {},
@@ -13,7 +13,7 @@ export const AuthContext = createContext({
 
 const AuthProvider = (props) => {
   const [token, setToken] = useState(null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [isLoading,setLoading] = useState(false);
   
   useEffect(() => {
@@ -22,10 +22,10 @@ const AuthProvider = (props) => {
   
  const fetchFromLocalStorage = () => {
  const data  = window.localStorage.getItem('token');
+ setUser({});
  setToken(data);
  }
 
- 
 
   return (
     <AuthContext.Provider
