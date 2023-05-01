@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useReducer } from "react";
+import { Fragment, useContext, useEffect, useReducer, useState } from "react";
 import classes from "./Schemes.module.css";
 import FilterCheckBox from "../FilterCheckBox/FilterCheckBox";
 import FilterResultCard from "../FilterResultCard/FilterResultCard";
@@ -6,14 +6,16 @@ import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import { useLocation } from "react-router-dom";
 import { getSchemeByIdentifier } from "../../api/scheme-api";
 import { UiContext } from "../../context/ui-context";
+import Footer from "../Footer/Footer";
 
 const INITIAL_VALUE = {
   items: [],
   page: {
-    totalPage: 0,
+    totalPages: 0,
     total: 0,
-    pageNumber: 0,
-    from: 0,
+    pageNumber: 1,
+    from : 0,
+    size : 0
   },
   filter: [],
   query: [],
@@ -42,8 +44,8 @@ const reducer = (state, action) => {
       };
 
       case "REMOVE_QUERY":
-        const q1 =  state.query.filter((q)=>q.identifier!==action.payload.identifier);
-        console.log(q1);
+        const q1 =  state.query.filter((q)=>q.identifier!==action.payload.identifier||q.value!==action.payload.value);
+        //console.log(q1);
         return {
           ...state,
           query: q1,
@@ -64,7 +66,19 @@ const reducer = (state, action) => {
           ...state,
           filter: filter,
         };
-    default:
+       case "RESET_QUERY":{
+          return {
+            ...state,
+            query: state.query.filter((q)=>q.identifier===action.payload.includeFilter),
+          };
+       }
+       case "SET_PAGE":{
+        return {
+          ...state,
+          from: (action.payload.page) * state.size,
+        }
+      }
+        default:
       return state;
   }
 };
@@ -73,52 +87,33 @@ const Schemes = () => {
   const location = useLocation();
   const uiContext = useContext(UiContext);
   const [state, dispatch] = useReducer(reducer, INITIAL_VALUE);
+  const [excludeFilter, setExcludeFilter] = useState("");
   useEffect(() => {
     basedOnLocation(location);
+    
   }, []);
-
   
-  const basedOnLocation = (location) => {
-    const query = {
-      lang: "en",
-      from: 0,
-      size: 10,
-      keyword: "",
-      sort: "",
-    };
-    if (location.pathname.startsWith("/category/", 15)) {
-      const q = [
-        {
-          identifier: "schemeCategory",
-          value: decodeURIComponent(location.pathname).split("/")[4],
-        },
-      ];
-
-      query.q = q;
-    } else if (location.pathname.startsWith("/state/", 15)) {
-      const q = [
-        { identifier: "level", value: "State" },
-        { identifier: "beneficiaryState", value: "All" },
-        {
-          identifier: "beneficiaryState",
-          value: decodeURIComponent(location.pathname).split("/")[4],
-        },
-      ];
-      query.q = q;
-    } else if (location.pathname.startsWith("/ministry/", 15)) {
-      const q = [
-        {
-          identifier: "nodalMinistryName",
-          value: decodeURIComponent(location.pathname).split("/")[4],
-        },
-      ];
-      query.q = q;
-    }
-    dispatch({ type: "SET_QUERY", payload: { query: query.q } });
-    uiContext.setLoading(true);
-    getSchemeByIdentifier(query)
+  useEffect(()=>{
+    
+    if(state.query.length>0){
+      //window.scrollTo({top: 0, left: 0, behavior: 'smooth' });
+    
+      const query = {
+        lang: state.lang,
+        from: state.from,
+        size: state.size,
+        keyword: state.keyword,
+        sort: state.sort,
+        q : state.query
+      };
+      uiContext.setLoading(true);
+      getSchemeByIdentifier(query)
       .then((res) => {
+     
+       var filter =[]; 
         res.data.data.facets.forEach((f) => {
+          if(f.entries.length > 1 && f.identifier !== excludeFilter){
+         
          
           if (f.display === "ListFacet") {
             query.q.forEach((q) => {
@@ -145,26 +140,81 @@ const Schemes = () => {
           } else {
             console.log("Error");
           }
+          filter.push(f);
+        }
         });
-
+        console.log(res.data.data.hits.page,);
         dispatch({
           type: "SET_ITEMS_AND_PAGE",
           payload: {
             items: res.data.data.hits.items,
             page: res.data.data.hits.page,
-            filter: res.data.data.facets,
+            filter: filter,
           },
         });
-
-       
-
-       
+        
         uiContext.setLoading(false);
       })
       .catch((err) => {
         console.log(err);
         uiContext.setLoading(false);
       });
+    }
+    
+    console.log(state.query);
+    
+  },[
+    state.query,
+    state.from,
+  ]);
+
+  const basedOnLocation = (location) => {
+    const query = {
+      lang: "en",
+      from: 0,
+      size: 10,
+      keyword: "",
+      sort: "",
+    };
+
+    
+    if (location.pathname.startsWith("/category/", 15)) {
+      const q = [
+        {
+          identifier: "schemeCategory",
+          value: decodeURIComponent(location.pathname).split("/")[4],
+        },
+      ];
+      setExcludeFilter('schemeCategory');
+      query.q = q;
+    } else if (location.pathname.startsWith("/state/", 15)) {
+      const q = [
+        { identifier: "level", value: "State" },
+        { identifier: "beneficiaryState", value: "All" },
+        {
+          identifier: "beneficiaryState",
+          value: decodeURIComponent(location.pathname).split("/")[4],
+        },
+      ];
+      setExcludeFilter('beneficiaryState');
+      query.q = q;
+    } else if (location.pathname.startsWith("/ministry/", 15)) {
+      const q = [
+        {
+          identifier: "nodalMinistryName",
+          value: decodeURIComponent(location.pathname).split("/")[4],
+        },
+      ];
+      query.q = q;
+      setExcludeFilter('nodalMinistryName');
+    }
+   
+    dispatch({ type: "SET_QUERY", payload: { query: query.q } });
+    uiContext.setLoading(true);
+    
+   
+
+     
   };
   // /login/user-journey
   // /user-journey
@@ -172,65 +222,29 @@ const Schemes = () => {
   // /category/state/
   // /category/ministiry/
 
-  
+ 
   const checkBoxHandler = (event,identifier) => {
     
-    if(!event.target.checked){
-      dispatch({ type: "REMOVE_QUERY", payload: { identifier: identifier } });
-      dispatch({ type: "SET_FILTER_CHECKBOX", payload: { label: event.target.value, checked: event.target.checked } });
-      return;
-    }
-      dispatch({ type: "SET_QUERY", payload: { query: [{identifier:identifier, value:decodeURIComponent(event.target.value) }] } });
-      let q = state.query;
-      
-    
-    const i = q.findIndex((f)=>f.identifier === identifier);
-    if(i ===  -1){
-      q = [{identifier:identifier, value:decodeURIComponent(event.target.value) },...q]
-    }else{
-      q[i].value = decodeURIComponent(event.target.value);
-    }
-    const query = {
-      lang: state.lang,
-      from: state.from,
-      size: state.size,
-      keyword: state.keyword,
-      sort: state.sort,
-      q : q
-    };
-    uiContext.setLoading(true);
-    getSchemeByIdentifier(query).then((res) => {
-      res.data.data.facets.forEach((f) => {
-        if (f.display === "ListFacet") {
-          query.q.forEach((q) => {
-            if (q.identifier === f.identifier) {
-              f.entries.forEach((e) => {
-                if (q.value === e.label) {
-                  e.checked = true;
-                }
-              });
-            }
-          });
-        }
-      });
-      dispatch({
-        type: "SET_ITEMS_AND_PAGE",
-        payload: {
-          items: res.data.data.hits.items,
-          page: res.data.data.hits.page,
-          filter: res.data.data.facets,
-        },
-      });
-      uiContext.setLoading(false);
-    }).catch(err=>{
-      console.log(err);
-      uiContext.setLoading(false);
-    }
-    );
+    if(event.target.checked){
+        dispatch({ 
+        type: "SET_QUERY", 
+        payload: { query: [{identifier:identifier, value:decodeURIComponent(event.target.value) }] } });
 
+      }else{
+        console.log(identifier);
+        dispatch({ type: "REMOVE_QUERY", payload: { identifier: identifier , value : event.target.value} });
+      }
   };
+
   const dropdownHandler = (event, identifier) => {
     console.log(event.target.value, identifier);
+    if(event.target.value==='select'){
+      dispatch({ type: "REMOVE_QUERY", payload: { identifier: identifier } });
+    }else{
+      dispatch({ 
+        type: "SET_QUERY", 
+        payload: { query: [{identifier:identifier, min : event.target.value , max : event.target.value }] } });
+    }
   };
 
 
@@ -256,7 +270,7 @@ const Schemes = () => {
             </Fragment>
           );
         } else if (f.display === "ComboBoxFacet") {
-          console.log("SE",f.selected);
+         
           return (
            
             <Fragment key={f.identifier}>
@@ -275,6 +289,13 @@ const Schemes = () => {
       })}
     </Fragment>
   );
+ 
+  const changePage = (page) => {
+    dispatch({ type: "SET_PAGE", payload: { page: page } });
+  };
+     const resetFilterHandler = () =>{
+      dispatch({ type: "RESET_QUERY" , payload : {includeFilter : excludeFilter} });
+     }
 
   return (
     <Fragment>
@@ -286,7 +307,7 @@ const Schemes = () => {
           <div className={`${classes.filterContainer}`}>
             <div className={classes.filterHeader}>
               <h5>Filter By</h5>
-              <button className="btn btn-primary">Reset Filter</button>
+              <button onClick={resetFilterHandler} className="btn btn-primary">Reset Filter</button>
             </div>
             <hr />
             {filterForm}
@@ -317,8 +338,25 @@ const Schemes = () => {
           {state.items.map((it) => (
             <FilterResultCard key={it.id} fields={it.fields} />
           ))}
+
+{state.totalPages !== 0 && <nav aria-label="Page navigation example" className="my-5">
+  <ul className="pagination justify-content-center">
+    <li className={`page-item ${state.page.pageNumber === 0 ? 'disabled' : ''}`}>
+      <button onClick={()=>changePage(state.page.pageNumber - 1 )} disabled={state.page.pageNumber === 0} className={`page-link ${state.page.pageNumber === 0 ? 'disabled' : ''}`} >Previous</button>
+    </li>
+    {state.page.pageNumber !== 0 && <li className="page-item"><button onClick={()=>changePage(state.page.pageNumber )}  className="page-link" >{state.page.pageNumber}</button></li>}
+    <li className="page-item"><button className="page-link active" href="#">{state.page.pageNumber+1}</button></li>
+    {state.page.pageNumber !== state.page.totalPages-1  &&  <li className="page-item"><button onClick={()=>changePage(state.page.pageNumber + 1 )}  className="page-link" href="#">{state.page.pageNumber + 2}</button></li>}
+    <li className={`page-item ${state.page.pageNumber === (state.page.totalPages-1) ? 'disabled' : ''}`}>
+      <button className="page-link" onClick={()=>changePage(state.page.pageNumber + 1 )}  disabled={state.page.pageNumber === (state.page.totalPages-1)} >Next</button>
+    </li>
+  </ul>
+</nav>}
         </div>
+
+  
       </div>
+      <Footer />
     </Fragment>
   );
 };

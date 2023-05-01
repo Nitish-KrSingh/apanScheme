@@ -2,6 +2,7 @@ import FormCard from '../components/ui/FormCard/FormCard';
 import React, { useState } from 'react';
 import classes from './FilterForm.module.css';
 
+
 const FilterForm = () => {
   const [step, setStep] = useState(1);
 
@@ -13,6 +14,9 @@ const FilterForm = () => {
     setStep(step - 1);
   };
 
+  const onSubmit =(event)=>{
+    event.preventDefault();
+  }
   const renderStep = () => {
     switch (step) {
       case 1:
@@ -23,9 +27,9 @@ const FilterForm = () => {
             <h2>Help us find the best schemes for you</h2>
             <div className="form-group  form-outline mb-4">
               <label htmlFor='gender'><sup>*</sup>Gender</label><br />
-              <input type='radio' name='gender' required id='gender' class="radio m-2" value="Female" />Female
-              <input type='radio' name='gender' required id='gender' class="radio m-2" value="Male"/>Male
-              <input type='radio' name='gender' required id='gender' class="radio m-2" value="Transgender" />Transgender
+              <input type='radio' name='gender' required id='gender' className="radio m-2" value="Female" />Female
+              <input type='radio' name='gender' required id='gender' className="radio m-2" value="Male"/>Male
+              <input type='radio' name='gender' required id='gender' className="radio m-2" value="Transgender" />Transgender
             </div>
             <div className="form-group  form-outline mb-4">
               <label htmlFor='age'><sup>*</sup>Age</label>
@@ -94,8 +98,8 @@ const FilterForm = () => {
 
             <div className="form-group  form-outline mb-4">
               <label htmlFor='residence'><sup>*</sup>Please select your area of residence?</label><br />
-              Urban<input type='radio' class="radio m-2" name='residence' required id='residence' value="Urban" />
-              Rural<input type='radio' class="radio m-2" name='residence' required id='residence' value="Rural" />
+              Urban<input type='radio' className="radio m-2" name='residence' required id='residence' value="Urban" />
+              Rural<input type='radio' className="radio m-2" name='residence' required id='residence' value="Rural" />
             </div>
 
             <button className="btn btn-secondary mx-5" onClick={prevStep}>Previous</button>
@@ -108,24 +112,24 @@ const FilterForm = () => {
             <h1>Step 3</h1>
             <div className="form-group  form-outline mb-4">
               <label htmlFor='pwd'><sup>*</sup>Are you a diferently abled?</label><br />
-              Yes<input type='radio'class="radio m-2" name='pwd' required id='pwd' value="Yes" />
-              No<input type='radio' class="radio m-2" name='pwd' required id='pwd' value="No" />
+              Yes<input type='radio'className="radio m-2" name='pwd' required id='pwd' value="Yes" />
+              No<input type='radio' className="radio m-2" name='pwd' required id='pwd' value="No" />
             </div>
             <div className="form-group  form-outline mb-4">
               <label htmlFor='minority'><sup>*</sup>Do you belong to Minority?</label><br />
-              Yes<input type='radio' class="radio m-2" name='minority' required id='minority' value="Yes" />
-              No<input type='radio' class="radio m-2"name='minority' required id='minority' value="No" />
+              Yes<input type='radio' className="radio m-2" name='minority' required id='minority' value="Yes" />
+              No<input type='radio' className="radio m-2"name='minority' required id='minority' value="No" />
             </div>
             <div className="form-group  form-outline mb-4">
               <label htmlFor='pwd'><sup>*</sup>Are you a Student</label><br />
-              Yes<input type='radio' class="radio m-2"name='student' required id='student' value="Yes" />
-              No<input type='radio'class="radio m-2" name='student' required id='student' value="No" />
+              Yes<input type='radio' className="radio m-2"name='student' required id='student' value="Yes" />
+              No<input type='radio'className="radio m-2" name='student' required id='student' value="No" />
             </div>
 
             <div className="form-group  form-outline mb-4">
               <label htmlFor='bpl'><sup>*</sup>Do you belong to BPL?</label><br />
-              Yes<input type='radio' class="radio m-2"name='bpl' required id='bpl' value="Yes" />
-              No<input type='radio' class="radio m-2" name='bpl' required id='bpl' value="No" />
+              Yes<input type='radio' className="radio m-2"name='bpl' required id='bpl' value="Yes" />
+              No<input type='radio' className="radio m-2" name='bpl' required id='bpl' value="No" />
             </div>
             <button className="btn btn-secondary" onClick={prevStep}>Previous</button>
             <button className="btn btn-primary" onClick={nextStep}>Next</button>
@@ -158,6 +162,6 @@ const FilterForm = () => {
         return null;
     }
   };
-  return <div>{renderStep()}</div>;
+  return <div><form onSubmit={onSubmit}>{renderStep()}</form></div>;
 };
 export default FilterForm;

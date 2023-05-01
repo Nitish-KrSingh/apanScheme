@@ -10,7 +10,7 @@ return (<div className={`form-check ${classes.filterItem}`}>
     className="form-check-input"
     type="checkbox"
     value={title}
-    checked={checked}
+    checked={checked === undefined ? false : checked}
     id="defaultCheck1"
   />
   <label className="form-check-label" htmlFor="defaultCheck1">
