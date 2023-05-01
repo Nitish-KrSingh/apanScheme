@@ -10,6 +10,7 @@ import Schemes from './components/Schemes/Schemes';
 import FilterForm from './components/FilterForm';
 import HowItWorks from './components/Home/HowItWorks';
 import Footer from './components/Footer/Footer';
+import SchemesDetails from './components/SchemesDetails/SchemesDetails';
 import UserProfile from './components/UserProfile/UserProfile';
 import HorizontalLoader from './components/ui/HorizontalLoader/HorizontalLoader';
 import { AuthContext } from './context/auth-context';
@@ -39,7 +40,7 @@ function App() {
 
         <Route element={<HowItWorks/> } exact path = '/HowItWorks' />
 
-
+        <Route element={<SchemesDetails/>} exact path = '/SchemesDetails' />
 
       </Routes>
     </>
