@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './FilterForm.module.css';
 import Footer from "../components/Footer/Footer"
 
+
 const FilterForm = () => {
   const [step, setStep] = useState(1);
   const [isSTD, setIsSTD] = useState(false);
@@ -17,6 +18,7 @@ const FilterForm = () => {
   };
 
 
+
   const handlePWDChange = (event) => {
     setIsPwd(event.target.value === "Yes");
   }
@@ -24,11 +26,11 @@ const FilterForm = () => {
   const handleSTDChange = (event) => {
     setIsSTD(event.target.value === "No");
   }
-
   const renderStep = () => {
     switch (step) {
       case 1:
         return (
+
           <>
             <FormCard>
               <h2>Help us find the best schemes for you</h2>
@@ -120,6 +122,7 @@ const FilterForm = () => {
             </FormCard>
             <Footer />
           </>
+
         );
 
 
@@ -153,6 +156,7 @@ const FilterForm = () => {
             </FormCard>
             <Footer />
           </>
+
         );
 
 
@@ -224,6 +228,7 @@ const FilterForm = () => {
 
     }
   };
+
 
   return <div>{renderStep()}</div>;
 

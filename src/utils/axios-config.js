@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const MyServerInstance = axios.create({
-    baseURL: 'http://192.168.111.68:5000'
+    baseURL: 'http://192.168.43.55:5000'
   });
 
 const MySchemeServerInstance = axios.create({
