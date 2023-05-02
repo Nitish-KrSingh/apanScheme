@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const MyServerInstance = axios.create({
-    baseURL: 'https://apnaschemebackend.onrender.com/'
+    baseURL: 'https://apnaschemebackend.onrender.com'
   });
 
 const MySchemeServerInstance = axios.create({
