@@ -22,7 +22,7 @@ label {
 }
 
 
- container Button{
+.NextButton{
   font-size:18px;
   font-family:Arial;
   width:126px;
@@ -42,6 +42,6 @@ label {
   background:linear-gradient(rgb(72, 221, 56), rgb(3, 94, 3));
   }
 
-  container Button:hover {
+  .NextButton:hover {
     background: linear-gradient(rgba(32, 50, 124, 1), rgba(56, 87, 221, 1));
     }

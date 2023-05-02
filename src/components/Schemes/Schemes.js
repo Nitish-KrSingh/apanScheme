@@ -24,6 +24,7 @@ const INITIAL_VALUE = {
   size: 10,
   keyword: "",
   sort: "",
+  sortedOptions: []
 };
 
 const reducer = (state, action) => {
@@ -35,8 +36,10 @@ const reducer = (state, action) => {
         items: [...action.payload.items],
         page: action.payload.page,
         filter: [...action.payload.filter],
+        sortedOptions : [...action.payload.sortOptions]
       };
     case "SET_QUERY":
+      console.log(action.payload);
       const q =  [...action.payload.query,...state.query];
       return {
         ...state,
@@ -70,6 +73,8 @@ const reducer = (state, action) => {
           return {
             ...state,
             query: state.query.filter((q)=>q.identifier===action.payload.includeFilter),
+            sort : "",
+            lang : "en",
           };
        }
        case "SET_PAGE":{
@@ -78,6 +83,21 @@ const reducer = (state, action) => {
           from: (action.payload.page) * state.size,
         }
       }
+      case "SET_SORT":
+        return {
+          ...state,
+          sort: action.payload.sort,
+        };
+      case "SET_LANG":
+        return {
+          ...state,
+          lang: action.payload.lang,
+        };
+      case "SET_KEYWORD":
+        return {
+          ...state,
+          keyword: action.payload.keyword,
+        };
         default:
       return state;
   }
@@ -150,6 +170,7 @@ const Schemes = () => {
             items: res.data.data.hits.items,
             page: res.data.data.hits.page,
             filter: filter,
+            sortOptions : res.data.data.summary.sortOptions
           },
         });
         
@@ -166,6 +187,9 @@ const Schemes = () => {
   },[
     state.query,
     state.from,
+    state.sort,
+    state.lang,
+    state.keyword
   ]);
 
   const basedOnLocation = (location) => {
@@ -207,14 +231,13 @@ const Schemes = () => {
       ];
       query.q = q;
       setExcludeFilter('nodalMinistryName');
+    } else if (location.pathname.startsWith("/user-journey",15)) {
+        console.log(location);
+        query.q = location.state.q;
     }
    
     dispatch({ type: "SET_QUERY", payload: { query: query.q } });
-    uiContext.setLoading(true);
     
-   
-
-     
   };
   // /login/user-journey
   // /user-journey
@@ -274,7 +297,7 @@ const Schemes = () => {
           return (
            
             <Fragment key={f.identifier}>
-              <h5 className={classes.filterTitle}>{f.label}</h5>{" "}
+              <h5 className={classes.filterTitle}>{f.label}</h5>
               <FilterDropdown
                 identifier={f.identifier}
                 onChange={dropdownHandler}
@@ -296,7 +319,17 @@ const Schemes = () => {
      const resetFilterHandler = () =>{
       dispatch({ type: "RESET_QUERY" , payload : {includeFilter : excludeFilter} });
      }
-
+  const sortOnChangeHandler = (event) => {
+    
+    dispatch({ type: "SET_SORT", payload: { sort: event.target.value } });
+  };
+  
+  const searchOnChangeHandler = (event) => {
+    dispatch({ type: "SET_KEYWORD", payload: { keyword: event.target.value } });
+  }
+  const languageOnChangeHandler = (event) => {
+    dispatch({ type: "SET_LANG", payload: { lang: event.target.value } });
+  };
   return (
     <Fragment>
       {/* <div className={classes.schemeHeader}>
@@ -323,18 +356,38 @@ const Schemes = () => {
               placeholder="Search Schemes"
               aria-label="Search Schemes"
               aria-describedby="button-addon2"
+              onChange={searchOnChangeHandler}
             />
             <button
               className="btn btn-success"
               type="button"
               id="button-addon2"
             >
+              
               Search
             </button>
           </div>
+          <div className="d-flex justify-content-between">
           <p className="mt-3">
             We found {state.page.total} schemes based on your preferences
           </p>
+        
+          
+           
+          <div className="d-flex">
+        
+          <select className="form-select" onChange={sortOnChangeHandler} aria-label="Default select example">
+            
+            {state.sortedOptions.map((option)=><option key={option.id} value={option.id}>{option.label}</option>) }
+           </select>
+          
+          <select className="form-select" defaultValue="en" onChange={languageOnChangeHandler} aria-label="Default select example">
+           <option value="en">Englist</option> 
+           <option value="hi">Hindi</option>
+           </select>
+          </div>
+          </div>
+          
           {state.items.map((it) => (
             <FilterResultCard key={it.id} fields={it.fields} />
           ))}
