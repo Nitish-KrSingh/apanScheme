@@ -32,9 +32,9 @@ const Navbar = () => {
   };
 
     return(
-      <header className={classes.header}>
+      <header  className={`${classes.header}`}>
       <div className={classes.logo}>Apna<span className={classes.logoSpan}>Scheme</span></div>
-      <nav>
+      <nav >
         <ul>
           <li>
             <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''}  to='/'>Home</NavLink>

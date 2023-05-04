@@ -7,6 +7,8 @@
     background-color:#9aca9a;
     padding: 0 5%;
     color: #000000;
+    
+    z-index: 44;
   }
   
   .logo {

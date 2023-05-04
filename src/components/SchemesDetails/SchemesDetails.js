@@ -2,7 +2,7 @@ import React, { useEffect , useState } from 'react';
 import {useNavigate , useSearchParams ,   } from "react-router-dom"
 import { getSchemeDetailsApi } from '../../api/scheme-api';
 import Spinner from '../ui/Spinner/Spinner';
-
+import classes from './SchemesDetails.module.css';
 
 
 
@@ -27,6 +27,63 @@ const SchemesDetails = () => {
                 console.log(searchParams);
 
     } , []) ;
+
+    const details = data!== null ? <div> {data.pageProps.schemeData.en.schemeContent.detailedDescription.map((data)=>{
+            if(data.type==='heading_four'){
+                return <h5 className={`${classes.detailTitle} card-title`}>{data.children[0].text}</h5>
+            }else if(data.type==='paragraph'){
+                return <p className={classes.details}>{data.children[0].text}</p>
+            }else if(data.type==='ol_list'){
+                return <ol className={classes.orderedList}>{data.children.map((d)=>{
+                    if(d.children[0].text===''){
+                        return <span></span>
+                    }
+                    return <li>{d.children[0].text}</li>
+                })}</ol>
+            }else{
+                return <span></span>
+            }
+
+    })}
+    </div> : <p> <Spinner/> </p>;
+
+    const benefits = data!== null ? <p> {data.pageProps.schemeData.en.schemeContent.benefits.map((data)=>{
+       if(data.type==='paragraph'){
+                return data.children.map(d=>{
+                    if(d.bold){
+                        return <strong> <span  className={classes.details}>{d.text}</span></strong>;
+                    }else{
+                        return <span  className={classes.details}>{d.text}</span>;
+                    }
+                })
+            }
+    })}</p> : <p> <Spinner/> </p>; 
+
+    const applicationProcess  = data!== null ? <> {data.pageProps.schemeData.en.applicationProcess.map((data)=>{
+        return <> <h4 >{data.mode}</h4> {data.process.map(d=>{
+                if(d.type==='ol_list'){
+                    return <ol className={classes.orderedList}>{d.children.map((d)=>{
+                        if(d.type === 'ol_list'){
+                            return <ol className={classes.orderedList}>{d.children.map((d)=>{
+                                if(d.children[0].text===''){
+                                    return <span></span>
+                                }
+                                return <li>{d.children[0].text}</li>
+                            })}</ol>
+                        }
+                        if(d.children[0].text===''){
+                            return <span></span>
+                        }
+                        return <li>{d.children[0].text}</li>
+                    })}</ol>
+                }else if(d.type==='list_item'){
+                    return <li className={classes.listItem}>{d.children[0].text}</li> 
+                }else{
+                    return <span></span>
+                }
+        })}</>;
+
+    })}</> : <p> <Spinner/> </p>;
 
     return (
     <>
@@ -57,35 +114,32 @@ const SchemesDetails = () => {
 
                             <div className="card-body">
 
+
+
                                 <h5 className="card-title">{data.pageProps.schemeData.en.basicDetails.schemeName}</h5>
 
-                                <div className="card-body" id="Details">
-                                <a className="btn btn-outline-success btn-block" href={data.pageProps.schemeData.en.schemeContent.references[0].url}>Download PDF</a>
-                                    <h3 className="card-title">Details</h3>
-                                    <h5>Objective </h5>
-                                    <p className="card-text"></p>
+                              
+                                    
+                              
+                                 <h2 className={`${classes.detailTitle} mt-3`}>Details</h2>
+                                    <hr/>
+                                {details}
+
+                                <h4 className={`${classes.detailTitle} mt-3`}>Benefits</h4>
+                                {benefits}
+                                
+                               <a href=''> <h4 className={`${classes.detailTitle} mt-3`}>Application Process</h4></a>
+                                {applicationProcess}
+
+                                <div className='h-stack'>
+                                <a className="btn btn-lg btn-outline-success mx-3" href={data.pageProps.schemeData.en.schemeContent.references[0].url}>Download PDF</a>
+
+                                   
+                                <a className='btn btn-lg btn-primary ' rel="noreferrer" target='_blank' href={data.pageProps.schemeData.en.applicationProcess[0].url}>Apply Now</a>
+                          
                                 </div>
 
-                                <div className="card-body" id="Benefits">
-                                    <h5 className="card-title">Benefits</h5>
-                                    <p className="card-text">Financial benefit of Rs. 6000 per annum per family payable in three equal installments of Rs 2000 each, every four months.</p>
-                                </div>
-
-                                <div className="card-body" id="Eligibility">
-                                    <h5 className="card-title">Eligibility</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                                <div className="card-body" id="Exclusions">
-                                    <h5 className="card-title">Exclusions</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                                <div className="card-body" id="Details">
-                                    <h5 className="card-title">Card title 2</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
+                             
 
                  
 
