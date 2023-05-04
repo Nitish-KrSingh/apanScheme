@@ -35,15 +35,12 @@ const Navbar = () => {
       <header className={classes.header}>
       <div className={classes.logo}>Apna<span className={classes.logoSpan}>Scheme</span></div>
       <nav>
-        <ul >
+        <ul>
           <li>
             <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''}  to='/'>Home</NavLink>
           </li>
           <li>
             <a  href='#scheme'>Schemes</a>
-          </li>
-          <li>
-            <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''}   to='/ministries'>Ministries</NavLink>
           </li>
           <li>
             <NavLink className={({ isActive, isPending })=>isActive ?   classes.active : ''}  to='/about'>About Us</NavLink>

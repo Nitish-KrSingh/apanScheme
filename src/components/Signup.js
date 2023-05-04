@@ -25,7 +25,7 @@ const Signup = () => {
           uiContext.setLoading(false);
          authContext.setToken(response.data.token);
          window.localStorage.setItem('token',response.data.token); 
-         navigate("/", {replace : true});
+         navigate("/filterform", {replace : true});
         })
         .catch((err) => {
           uiContext.setLoading(false);
@@ -78,11 +78,11 @@ const Signup = () => {
               </div>
               <div className={classNamees.control}>
                 <label htmlFor='password'>Password</label>
-                <input id='password' required rows='5' />
+                <input type="password" id='password' required rows='5' />
               </div>
               <div className={classNamees.control}>
                 <label htmlFor='cpassword'>Confirm Password</label>
-                <input id='cpassword' required rows='5' />
+                <input  type="password" id='cpassword' required rows='5' />
               </div>
               <div className={classNamees.actions}>
                 <button>Sign-Up</button>

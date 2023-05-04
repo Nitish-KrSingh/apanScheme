@@ -3,6 +3,7 @@ import classNamees from "./UserProfile.module.css"
 import { AuthContext } from "../../context/auth-context";
 import { getUser } from "../../api/auth-api";
 import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const UserProfile = () => { 
 
@@ -24,8 +25,13 @@ const UserProfile = () => {
             console.log(err);
         });
       },[]);
+
+      if(authContext.token!=null){
+        return <Navigate to={"/"}/>
+      }
+      
 return (<Fragment>
-    <body>
+ 
       
    
   <div className="container-xl px-4 mt-4">
@@ -104,7 +110,7 @@ return (<Fragment>
         </div>
     </div>
 </div>
-</body>
+
    </Fragment>); 
 
 } 
