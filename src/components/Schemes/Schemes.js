@@ -389,7 +389,7 @@ const Schemes = () => {
           </div>
           
           {state.items.map((it) => (
-            <FilterResultCard key={it.id} fields={it.fields} />
+            <FilterResultCard key={it.id} id={it.id} fields={it.fields} />
           ))}
 
 {state.totalPages !== 0 && <nav aria-label="Page navigation example" className="my-5">

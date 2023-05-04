@@ -1,5 +1,5 @@
 
-import { MySchemeServerInstance } from "../utils/axios-config";
+import { MySchemeServerInstance , MyschemesDetails} from "../utils/axios-config";
 
 
 
@@ -10,4 +10,14 @@ const getSchemeByIdentifier = async ({q,lang,keyword,sort,from,size}) =>  {
 	"tYTy5eEhlu9rFjyxuCr7ra7ACp4dv1RH8gWuHTDc"}});
 }
 
-export {getSchemeByIdentifier };
+
+const getSchemeDetailsApi = async(slug)=> {
+    
+    return await MyschemesDetails.get('/_next/data/RZFGluwcGzr8pQlOeDUnk/en/schemes/'+slug+'.json?slug='+slug,{headers:{'x-cors-api-key': "temp_907e7a2e985e1b92f023beb0946fd678"}})
+    
+
+}
+
+export {getSchemeByIdentifier, getSchemeDetailsApi };
+
+

@@ -9,8 +9,12 @@ const MySchemeServerInstance = axios.create({
     
   });
 
+  const MyschemesDetails = axios.create({
+    baseURL : 'https://proxy.cors.sh/https://www.myscheme.gov.in'
+  })
+
     
 
 
-export { MyServerInstance, MySchemeServerInstance };
+export { MyServerInstance, MySchemeServerInstance, MyschemesDetails };
   

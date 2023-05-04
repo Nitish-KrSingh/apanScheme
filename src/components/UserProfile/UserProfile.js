@@ -26,10 +26,10 @@ const UserProfile = () => {
         });
       },[]);
 
-      if(authContext.token!=null){
+      if(authContext.token==null){
         return <Navigate to={"/"}/>
       }
-      
+
 return (<Fragment>
  
       
@@ -58,32 +58,22 @@ return (<Fragment>
                 <div className="card-body">
                     <form>
                   
-                        <div className="mb-3">
+
+                      
+                        <div className="row gx-3 mb-3">
+                     
+                        <div className="col-md-6">
                             <label className="small mb-1" htmlFor="inputUsername">Username </label>
                             <input className="form-control" id="inputUsername" type="text" placeholder="Enter your username" value={authContext.user.username}/>
                         </div>
-                      
-                        <div className="row gx-3 mb-3">
                            
                             <div className="col-md-6">
-                                <label className="small mb-1" htmlFor="inputFirstName">First name</label>
-                                <input className="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value={authContext.user.firstName}/>
+                                <label className="small mb-1" htmlFor="inputFirstName">Name</label>
+                                <input className="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value={authContext.user.name}/>
                             </div>
                           
-                            <div className="col-md-6">
-                                <label className="small mb-1" htmlFor="inputLastName">Last name</label>
-                                <input className="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
-                            </div>
                         </div>
                      
-                        <div className="row gx-3 mb-3">
-                        
-                            
-                            <div className="col-md-6">
-                                <label className="small mb-1" htmlFor="inputLocation">Location</label>
-                                <input className="form-control" id="inputLocation" type="text" placeholder="Enter your location" />
-                            </div>
-                        </div>
                       
                         <div className="mb-3">
                             <label className="small mb-1" htmlFor="inputEmailAddress">Email address</label>
@@ -97,10 +87,7 @@ return (<Fragment>
                                 <input className="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value={authContext.user.phone}/>
                             </div>
                          
-                            <div className="col-md-6">
-                                <label className="small mb-1" htmlFor="inputBirthday">Birthday</label>
-                                <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988"/>
-                            </div>
+
                         </div>
                      
                         <button className="btn btn-primary" type="button">Save changes</button>

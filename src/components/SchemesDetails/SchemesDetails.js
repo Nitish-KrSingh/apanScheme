@@ -1,16 +1,43 @@
-import React from 'react';
-import {useNavigate} from "react-router-dom"
+import React, { useEffect , useState } from 'react';
+import {useNavigate , useSearchParams ,   } from "react-router-dom"
+import { getSchemeDetailsApi } from '../../api/scheme-api';
+import Spinner from '../ui/Spinner/Spinner';
+
+
 
 
 const SchemesDetails = () => {
     const navigate = useNavigate();
+    const [data, setdata] = useState(null);
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    useEffect( ()=>{
+
+        const slug = searchParams.get("slug");
+        const id = searchParams.get("id");
+
+        getSchemeDetailsApi(slug).then((responce)=>{
+            console.log(responce.data)
+        setdata(responce.data);
+        }).catch((error)=>{
+            console.log(error)
+
+        })
+
+                console.log(searchParams);
+
+    } , []) ;
+
     return (
-        <>
+    <>
+      { data === null ?
+        <p> <Spinner/> </p>
+        :
             <div className="container">
                 <div className="row">
                     <div className="col-md-3 ">
                         <div className="position-fixed d-grid gap-3 mt-3 ">
-                        <a className="btn btn-outline-success btn-block" onClick={()=>navigate(-1)} > --Back</a>
+                        <a className="btn btn-outline-success btn-block" onClick={()=>navigate(-1)} >Back</a>
                         <a className="btn btn-outline-success btn-block" href="#Details">Details</a>
                         <a className="btn btn-outline-success btn-block" href="#Benefits">Benefits</a>
                         <a className="btn btn-outline-success btn-block" href="#Eligibility">Eligibility</a>
@@ -25,17 +52,18 @@ const SchemesDetails = () => {
                         <div className="card">
 
                             <div className="card-header">
-                                Ministry Of Agriculture and Farmers Welfare
+                            {data.pageProps.schemeData.en.basicDetails.nodalMinistryName.label}
                             </div>
 
                             <div className="card-body">
 
-                                <h5 className="card-title">Pradhan Mantri Kisan Samman Nidhi</h5>
+                                <h5 className="card-title">{data.pageProps.schemeData.en.basicDetails.schemeName}</h5>
 
                                 <div className="card-body" id="Details">
+                                <a className="btn btn-outline-success btn-block" href={data.pageProps.schemeData.en.schemeContent.references[0].url}>Download PDF</a>
                                     <h3 className="card-title">Details</h3>
                                     <h5>Objective </h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p className="card-text"></p>
                                 </div>
 
                                 <div className="card-body" id="Benefits">
@@ -59,59 +87,7 @@ const SchemesDetails = () => {
                                 </div>
 
 
-                                <div className="card-body" id="Details">
-                                    <h5 className="card-title">Card title 2</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-
-                                <div className="card-body" id="Details">
-                                    <h5 className="card-title">Card title 2</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                                <div className="card-body" id="Details">
-                                    <h5 className="card-title">Card title 2</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                                <div className="card-body" id="Details">
-                                    <h5 className="card-title">Card title 2</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                                <div className="card-body" id="Details">
-                                    <h5 className="card-title">Card title 2</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                                <div className="card-body" id="Details">
-                                    <h5 className="card-title">Card title 2</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                                <div className="card-body" id="Details">
-                                    <h5 className="card-title">Card title 2</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                                <div className="card-body" id="Details">
-                                    <h5 className="card-title">Card title 2</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                                <div className="card-body" id="Details">
-                                    <h5 className="card-title">Card title 2</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                                <div className="card-body" id="Details">
-                                    <h5 className="card-title">Card title 2</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-
-                                 <div className="card-body" id="Details">
-                                    <h5 className="card-title">Card title 2</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
+                 
 
 
                             </div>
@@ -119,7 +95,9 @@ const SchemesDetails = () => {
                     </div>
                 </div>
             </div>
-        </>
+       
+      }
+    </>
     )
 }
 
