@@ -8,6 +8,7 @@ import Ministries from "./Ministries/Ministries"
 import { useNavigate } from "react-router-dom"
 import Footer from "../Footer/Footer"
 import HowItWorks from "../Home/HowItWorks"
+import img1 from "../../assets/images/1.jpg"
 const Home = () => {
     const [schemeFilter ,setSchemeFilter] = useState('categories');
     const navigate = useNavigate();
@@ -27,6 +28,8 @@ const Home = () => {
     }
 
     return (<>
+
+
       <div className={`${classes.homeBackground}`}
       style={{backgroundImage : `url(${bg})`,}}
       >
@@ -43,7 +46,10 @@ const Home = () => {
         
       </div>
     </div>
+
   </div>
+  
+
   <div className={classes.categories} id="scheme">
       <div className={classes.filterOptions}>
         <button className={`btn  ${schemeFilter === 'categories' ? 'btn-success' : 'btn-light'}`} onClick={categoriesOnClickHandler}>Categories</button>
