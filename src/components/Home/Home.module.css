@@ -2,7 +2,6 @@
 .homeBackground
 {
    height: 90vh;
-   
    background-repeat: no-repeat;
    background-size: cover;
 }
@@ -17,7 +16,6 @@
 .title {
     color: #000000;
     font-size: 3rem;
-    
     font-family: 'ProductSans-Bold';
   }
  
@@ -25,7 +23,7 @@
     background-color: #006400;
     color: #ffffff;
     font-size: 2rem;
-    border-radius: 200px;
+    border-radius: 10px;
     font-weight: bold;
    width: 25rem;
     border: none;
@@ -37,7 +35,7 @@
     background-color: #55c555;
     color: #000000;
     font-size: 2rem;
-    border-radius: 200px;
+    border-radius: 10px;
     font-weight: bold;
     border: none;
     font-family: 'ProductSans-Bold';

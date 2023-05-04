@@ -49,7 +49,7 @@ const Footer = () => {
       <br/>
       <br/>
       <div className="media-icons">
-         <div className="topic">Usefull links</div>
+         <div className="topic">Useful links</div>
          <a target="_blank" href="https://digitalindia.gov.in" title="Digital India">
            
            <img src={dgindia}/>

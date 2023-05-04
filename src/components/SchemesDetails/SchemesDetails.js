@@ -95,11 +95,9 @@ const SchemesDetails = () => {
                     <div className="col-md-3 ">
                         <div className="position-fixed d-grid gap-3 mt-3 ">
                         <a className="btn btn-outline-success btn-block" onClick={()=>navigate(-1)} >Back</a>
-                        <a className="btn btn-outline-success btn-block" href="#Details">Details</a>
-                        <a className="btn btn-outline-success btn-block" href="#Benefits">Benefits</a>
-                        <a className="btn btn-outline-success btn-block" href="#Eligibility">Eligibility</a>
-                        <a className="btn btn-outline-success btn-block" href="#Exclusions">Exclusions</a>
-                        <a className="btn btn-outline-success btn-block" href="#ApplicationProcess">Application Process</a>
+                        <a className="btn btn-outline-success btn-block" href="#Details-t">Details</a>
+                        <a className="btn btn-outline-success btn-block" href="#benefits-t">Benefits</a>
+                        <a className="btn btn-outline-success btn-block" href="#application-t">Application Process</a>
                         <a className="btn btn-outline-success btn-block" href="#DocumentsRequired">Documents Required</a>
                         <a className="btn btn-outline-success btn-block" href="#SourcesAndReferences">Sources And References</a>
                     </div>
@@ -120,18 +118,23 @@ const SchemesDetails = () => {
 
                               
                                     
-                              
+                                <div id='Details-t'>
                                  <h2 className={`${classes.detailTitle} mt-3`}>Details</h2>
-                                    <hr/>
+                                <hr/>
+                               
                                 {details}
-
+                                </div>
+                                <div id="benefits-t">
                                 <h4 className={`${classes.detailTitle} mt-3`}>Benefits</h4>
                                 {benefits}
-                                
+                                </div>
+
+                                <div id="application-t">
                                <a href=''> <h4 className={`${classes.detailTitle} mt-3`}>Application Process</h4></a>
                                 {applicationProcess}
+                                </div>
 
-                                <div className='h-stack'>
+                                <div className='h-stack' id="SourcesAndReferences">
                                 <a className="btn btn-lg btn-outline-success mx-3" href={data.pageProps.schemeData.en.schemeContent.references[0].url}>Download PDF</a>
 
                                    
