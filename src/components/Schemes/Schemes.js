@@ -382,7 +382,7 @@ const Schemes = () => {
            </select>
           
           <select className="form-select" defaultValue="en" onChange={languageOnChangeHandler} aria-label="Default select example">
-           <option value="en">Englist</option> 
+           <option value="en">English</option> 
            <option value="hi">Hindi</option>
            </select>
           </div>
