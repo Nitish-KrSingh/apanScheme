@@ -491,7 +491,7 @@ const FilterForm = () => {
                 />
                 <br />
                 <label htmlFor="caste" className="form-label">
-                  You belong to...
+                  Category
                 </label>
                 <select
                   id="caste"
