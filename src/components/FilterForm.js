@@ -665,7 +665,7 @@ const FilterForm = () => {
                   </div>
                   <div className="form-group  form-outline mb-4">
                     <label htmlFor="parentIncomeAnnual">
-                      What is your Parent's or Guardian's Income?
+                      What is your Individual Income?
                     </label>
                     <br />
                     <input
